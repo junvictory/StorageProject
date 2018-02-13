@@ -1,0 +1,55 @@
+doctype html
+html(lang='en')
+    include ./includes/head.jade
+    body
+        include ./includes/nav.jade
+        div.container
+            div.row
+                br
+                h3.mx-auto= box
+                    small  box 
+                    =block
+                        small block
+                br
+            div.row
+                table.table(id="searchTable")
+                    thead.table-dark
+                        tr  
+                            td(scope="col") Num
+                            td(scope="col") #
+                            td(scope="col") Title
+                            td wdt 
+                            td edt 
+                            td Edit 
+
+                    tbody
+                        -each row in rows
+                            tr
+                                th(scope="row")=row.number
+                                td=row.id
+                                td=row.title
+                                td=row.wdt
+                                td=row.edt
+
+                                td
+                                    button.btn.btn-danger(value=row.id, data-toggle='modal', data-target='#modi', onclick='getValue($(this).val()); newModalReset();') 수정
+            div.row
+                div.col-lg-3.mx-auto
+                    a.btn.btn-secondary.btn-block(href="/") MainPage
+            
+
+            //Modi Modal            
+            include ./includes/modiModal.jade
+        
+        include ./includes/footer.jade
+        
+        script(src="/block.js")
+
+        //- script.
+        //-    var data= '#{data}';
+        //-    $(document).ready(function(){
+        //-    for(var i = 0; i< 5; i++){
+        //-    alert(data.title);
+        //-    }
+        //-    });
+            $(this).val();

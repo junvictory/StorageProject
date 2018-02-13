@@ -1,0 +1,31 @@
+#search.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new', aria-hidden='true')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5#exampleModalLabel.modal-title
+                | Search 
+                small 검색 할 수 있습니다.
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              .form-group.row
+                label.col-sm-3.col-form-label Title
+                .col-sm-6
+                  input.form-control(type='text', name='searchText', id='searchText')
+                .col-sm-3
+                  button.btn.btn-primary.btn-block(name='searchBtn', id='searchBtn') 검색
+              .form-group.row
+                table.table(id="searchTable")
+                  thead.table-dark
+                        tr  
+                            td(scope="col") #
+                            td(scope="col") Box
+                            td(scope="col") Block
+                            td(scope="col") Num
+                            td(scope="col") Title
+                  tbody
+                  
+
+            .modal-footer
+              input#check(type = 'text',value= 'false' ,hidden)
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Close

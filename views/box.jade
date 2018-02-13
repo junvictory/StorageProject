@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+    include ./includes/head.jade
+    body
+        include ./includes/nav.jade
+        div.container
+            div.row
+                br
+                h1.mx-auto=box
+                    small Box
+                br
+            div.row
+                table.mx-auto
+                    -for(var i = 0; i <=4; i++)
+                        - var x = 5 * i;
+                            tr  
+                                td
+                                    a.btn.btn-dark.btn-block.btn-lg(href=box+"/A"+(x+1))= x+1
+
+                                td
+                                    a.btn.btn-dark.btn-block.btn-lg(href=box+"/A"+(x+2))= x+2
+                                            
+                                td
+                                    a.btn.btn-dark.btn-block.btn-lg(href=box+"/A"+(x+3))= x+3
+                                            
+                                td
+                                    a.btn.btn-dark.btn-block.btn-lg(href=box+"/A"+(x+4))= x+4
+                                            
+                                td
+                                    a.btn.btn-dark.btn-block.btn-lg(href=box+"/A"+(x+5))= x+5    
+                            tr
+
+include ./includes/footer.jade

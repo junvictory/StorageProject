@@ -1,0 +1,29 @@
+{
+  "name": "storage",
+  "version": "1.0.0",
+  "description": "StorageProject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junvictory/StorageProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junvictory/StorageProject/issues"
+  },
+  "homepage": "https://github.com/junvictory/StorageProject#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}

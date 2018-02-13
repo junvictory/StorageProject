@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Storage Login
+    // Bootstrap core CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css', integrity='sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://code.jquery.com/jquery-1.10.2.js')
+    link(rel='stylesheet' , href='login.css')
+     
+  body.text-center
+    form.form-signin(action='/loginProcess', method='post')
+      img.mb-4(src='icon.png', width='72', height='72', alt='')
+      h1.h3.mb-3.font-weight-normal Storage Login 
+      label.sr-only(for='inputId') Id
+      input#inputEmail.form-control(type='id', placeholder='Id', required='', autofocus='' name= "username")
+      label.sr-only(for='inputPassword') Password
+      input#inputPassword.form-control(type='password', placeholder='Password', required='' name = "password")
+      
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+      p.mt-5.mb-3.text-muted © 2017-2018

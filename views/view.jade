@@ -1,0 +1,45 @@
+doctype html
+html(lang='en')
+    include ./includes/head.jade
+    body
+        include ./includes/nav.jade
+        div.container
+            div.row
+                br
+            div.row
+                table.mx-auto
+                    -for(var i = 0; i <=5; i++)
+                            - var x = 5 * i;
+                                 tr  
+                                    td
+                                        a.btn.btn-dark.btn-block.btn-lg(href="/W"+(x+1))= x+1
+
+                                    td
+                                        a.btn.btn-dark.btn-block.btn-lg(href="/W"+(x+2))= x+2
+                                                
+                                    td
+                                        a.btn.btn-dark.btn-block.btn-lg(href="/W"+(x+3))= x+3
+                                                
+                                    td
+                                        a.btn.btn-dark.btn-block.btn-lg(href="/W"+(x+4))= x+4
+                                                
+                                    td
+                                        a.btn.btn-dark.btn-block.btn-lg(href="/W"+(x+5))= x+5    
+                                tr
+            div.row
+                br
+            div.row
+                div.col-lg-3.mx-auto
+                    button.btn.btn-success.btn-block(data-toggle='modal', data-target='#search',onClick ="searchModalReset()") 검색
+                    button.btn.btn-primary.btn-block(data-toggle='modal', data-target='#new',onClick ="newModalReset()") New
+                    
+
+                    a.btn.btn-danger.btn-block(href='/logout') Logout
+            //New Modal
+            include ./includes/newModal.jade
+            //search Modal
+            include ./includes/searchModal.jade
+        
+            script(src="view.js")
+
+include ./includes/footer.jade

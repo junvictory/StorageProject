@@ -1,0 +1,71 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+           
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+            
+        meta(http-equiv='X-UA-Compatible', content='ie=edge')
+             
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css', integrity='sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy', crossorigin='anonymous')
+             
+        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js', integrity='sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4', crossorigin='anonymous')
+
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  
+        title Document
+    body
+        h1= box
+        h3= block
+        //- h2= rows[0].title
+        div.container
+            div.row
+                table()
+                    -for(var i = 0; i <8; i++)
+                        - var x = 2 * i;
+                            tr  
+                                td
+                                    input.btn.btn-primary.btn-block.btn-lg(type ="button", id= (x+1), value= (x+1),data-toggle="modal",data-target="#modal_view" )
+
+                                td
+                                    input.btn.btn-info.btn-block.btn-lg(type ="button", id= (x+2), value= (x+2),data-toggle="modal",data-target="#modal_view" )
+                            tr
+        
+        
+            button.btn.btn-primary(type='button', data-toggle='modal', data-target='#modal_view')
+         
+                    
+        each row in rows
+            script.
+                document.getElementById(#{row.number}).value = "#{row.title}";
+        
+        #modal_view.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                .modal-header
+                    h5#exampleModalLongTitle.modal-title Modal title
+                    |         
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                |       
+                .modal-body
+                    | ...
+                |       
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    |         
+                    button.btn.btn-primary(type='button') Save changes
+
+
+        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')     
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+        //- script.
+        //-    var data= '#{data}';
+        //-    $(document).ready(function(){
+        //-    for(var i = 0; i< 5; i++){
+        //-    alert(data.title);
+        //-    }
+        //-    });
+            

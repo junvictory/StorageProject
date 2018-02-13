@@ -1,0 +1,51 @@
+#modi.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new', aria-hidden='true')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5#exampleModalLabel.modal-title
+                | Edit 
+                small 수정 할 수 있습니다.
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              .form-group.row
+                label.col-sm-3.col-form-label Position
+                .col-sm-3
+                  input.form-control(type="text" name='ori_box' id="ori_box" readonly)
+                .col-sm-3
+                  input.form-control(type="text" name='ori_block' id="ori_block" readonly)
+                .col-sm-3
+                  input.form-control(type="text" name='ori_number' id='ori_number' readonly)
+              .form-group.row
+                label.col-sm-3.col-form-label Title
+                .col-sm-9
+                  input.form-control(type='text', name='ori_title', id='ori_title' readonly)
+              .form-group.row
+                h3.mx-auto 수정내용 
+              .form-group.row
+                label.col-sm-3.col-form-label Position
+                .col-sm-3
+                  select.form-control(name='box' id="box")
+                    -for(var i=1; i<=30;i++)
+                        option(value='W'+i)= 'W'+i
+                .col-sm-3
+                  select.form-control(name='block' id="block")
+                    -for(var i=1; i<=25;i++)
+                        option(value='A'+i)= 'A'+i
+                .col-sm-3
+                  select.form-control(name='number' id='number')
+                    option(value=null) 선택
+                    -for(var i=1; i<=16;i++)
+                        option(value=i)= i
+              .form-group.row
+                label.col-sm-3.col-form-label Title
+                .col-sm-9
+                  input.form-control(type='text', name='title', id='title')
+            .modal-footer
+              input#id(type = 'text',value= '0' ,hidden)
+              input#check(type = 'text',value= 'false' ,hidden)
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+              button.btn.btn-danger(type='button',id='delete') 삭제
+              button.btn.btn-info(type='button', id='save') 수정
+  #dialog-confirm(title='Empty the recycle bin?')
+  
