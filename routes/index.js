@@ -36,6 +36,14 @@ passport.use(new LocalStrategy({
     session: true,
     passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
   }, function (req, username, password, done) {
+
+    // var sql = 'SELECT * FROM user WHERE name=? AND password=?'
+    // var value =[username, passsword];
+    // conn.query(sql,value, function(err, rows, fields){
+    //     if(err){
+    //         console.log(err);
+    //    }else{}
+    // })
     if(username === 'store' && password === 'password'){
       return done(null, {
         'user_id': username,
@@ -63,8 +71,6 @@ var isAuthenticated = function (req, res, next) {
 
 
 router.get('/', isAuthenticated, function (req, res) {
-    var data = '{"resultcode":"00","message":"success","response":{"nickname":"kuhyun****","enc_id":"66cc7d93546573eb0c1430f251a3c3a826a4e4d44f80822ef285abf8c3409760","profile_image":"https:\/\/ssl.pstatic.net\/static\/pwe\/address\/img_profile.png","age":"20-29","gender":"M","id":"54882173","birthday":"07-18"}}';
-    console.log(data['response']);
     conn.query('SELECT count(*) from data', function (err, rows, fields) {
         if (err) {
             console.log(err);

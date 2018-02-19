@@ -56,7 +56,8 @@ function getValue(id){
                 $('#block').val(data['rows'][0].block);
                 $('#number').val(data['rows'][0].number);
                 $('#title').val(data['rows'][0].title);
-                
+                duplicateChange('true');
+
             }
         },
         error: function (request, status, error) {
@@ -72,18 +73,19 @@ function save() {
     obj.block = $('#block').val();
     obj.number = $('#number').val();
     $.ajax({
-        url: "/ajax/item",
+        url: "/ajax/item/"+$('#id').val(),
         dataType: "json",
-        type: "POST",
+        type: "PUT",
         data: obj,
         success: function (data) {
             if (data['result'] == true) {
-                $('#new').modal('toggle');
-                alert("추가 되었습니다.");
+                $('#modi').modal('toggle');
+                location.reload();
+                alert("수정 되었습니다.");
             }
         },
         error: function (request, status, error) {
-            alert("추가 실패 되었습니다.");
+            alert("수정 실패 되었습니다.");
         }
     });
 }
@@ -98,12 +100,20 @@ function duplicateChange(value) {
 }
 
 function duplicateCheck() {
+    var ori_box = $('#ori_box').val();
+    var ori_block = $('#ori_block').val();
+    var ori_number = $('#ori_number').val();    
+
     if ($('#number').val() == '선택') {
         duplicateChange('false')
     } else {
         var box = $('#box').val();
         var block = $('#block').val();
         var number = $('#number').val();
+
+        if((ori_box == box)&&(ori_block == block)&&(ori_number == number)){
+            duplicateChange('true');
+        }else{
         $.ajax({
             url: "/ajax/item/"+box+"/"+block+"/"+number,
             dataType: "json",
@@ -119,6 +129,7 @@ function duplicateCheck() {
                 duplicateChange('false');
             }
         });
+    }
     }
 }
 
@@ -136,7 +147,7 @@ function valueCheck() {
         return false;
     }
 }
-function newModalReset() {
+function modiModalReset() {
     duplicateChange('false')
     $('#title').val("");
     $('#box option').attr('selected', false);
