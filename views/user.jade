@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+    include ./includes/head.jade
+    body.bg-light
+    .container
+      .py-5.text-center
+        img.d-block.mx-auto.mb-4(src='/icon.png', alt='', width='72', height='72')
+        h2 User Creater
+        p.lead
+          | Storage 사용자 생성
+      .row
+        table.table(id="searchTable")
+          thead.table-dark
+            tr  
+              td(scope="col") #
+              td(scope="col") name
+              td(scope="col") password
+              td Description
+              td authority 
+              td 삭제
+          tbody
+            -each row in rows
+                tr
+                  th(scope="row")=row.id
+                  td=row.name
+                  td=row.password
+                  td=row.description
+                  td=row.authority
+                  td
+                    button.btn.btn-danger(onClick='userdelete('+row.id+');') 삭제
+      .row
+        div.col-lg-3.mx-auto
+          button.btn.btn-primary.btn-block(data-toggle='modal', data-target='#newUser', onclick='userModalReset();') 생성
+          a.btn.btn-secondary.btn-block(href="/") MainPage
+          
+      //user Modal            
+      include ./includes/userModal.jade
+        
+
+
+       
+     include ./includes/footer.jade
+     script(src="/user.js")

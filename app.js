@@ -17,6 +17,7 @@ app.use('/',index);
 //roter ajax
 app.use('/ajax',ajax);
 
+
 app.use((req, res, next) => { // 404 처리 부분
     
     res.status(404).send('Not Found');

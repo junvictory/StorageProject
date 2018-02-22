@@ -37,20 +37,33 @@ passport.use(new LocalStrategy({
     passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
   }, function (req, username, password, done) {
 
-    // var sql = 'SELECT * FROM user WHERE name=? AND password=?'
-    // var value =[username, passsword];
-    // conn.query(sql,value, function(err, rows, fields){
-    //     if(err){
-    //         console.log(err);
-    //    }else{}
-    // })
-    if(username === 'store' && password === 'password'){
-      return done(null, {
-        'user_id': username,
-      });
-    }else{
-      return done(false, null)
-    }
+    var sql = 'SELECT * FROM user WHERE name=? AND password=?';
+    var value = [username, password];
+    conn.query(sql,value, function(err, rows, fields){
+        if(err){
+            console.log(err);
+       }else{
+           if(JSON.stringify(rows[0]) == null){
+            console.log("No LogIN");
+            return done(false, null)
+
+           }else{
+               console.log(JSON.stringify(rows[0]));
+               return done(null, {
+                'user_name': rows[0].name,
+                'authority': rows[0].authority,
+              });
+           }
+       }
+    });
+
+    // if(username === 'store' && password === 'password'){
+    //   return done(null, {
+    //     'user_id': username,
+    //   });
+    // }else{
+    //   return done(false, null)
+    // }
 }));
 
 passport.serializeUser(function (user, done) {
@@ -76,7 +89,8 @@ router.get('/', isAuthenticated, function (req, res) {
             console.log(err);
         } else {
             console.log(JSON.stringify(rows[0]));
-            res.render('view', { count: JSON.stringify(rows[0]) });
+            res.render('view', { count: JSON.stringify(rows[0]), user_auth: req.user.authority });
+            console.log("Authority",req.user.authority);
             console.log('MainPageLoad');
         }
     });
@@ -99,6 +113,19 @@ router.get('/logout', function (req, res) {
 });
 
 
+router.get('/user', isAuthenticated, function (req, res) {
+        var sql = 'SELECT * FROM user';
+         conn.query(sql, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(rows);
+                res.render('user', { rows: rows });
+            }
+        }); 
+});
+
+
 router.get(['/:box', '/:box/:block'], isAuthenticated, function (req, res) {
     var box = req.params.box;
     var block = req.params.block;
@@ -117,7 +144,7 @@ router.get(['/:box', '/:box/:block'], isAuthenticated, function (req, res) {
         console.log(box);
         res.render('box', { box: box });
     }
-
 });
+
 
 module.exports = router;

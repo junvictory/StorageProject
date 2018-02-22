@@ -1,0 +1,36 @@
+#newUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new', aria-hidden='true')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5#exampleModalLabel.modal-title
+                | NEW User 
+                small 생성 할 수 있습니다.
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              .form-group.row
+                label.col-sm-3.col-form-label Name
+                .col-sm-5
+                  input.form-control(type='text', name='name', id='name')
+                .col-sm-3
+                  button#duplicate.btn.btn-danger(type='button') 중복
+              .form-group.row
+                label.col-sm-3.col-form-label Password
+                .col-sm-7
+                  input.form-control(type='password', name='password', id='password')
+              .form-group.row
+                label.col-sm-3.col-form-label Description
+                .col-sm-7
+                  input.form-control(type='text', name='description', id='description')
+              .form-group.row
+                label.col-sm-3.col-form-label Authority
+                .col-sm-7
+                  select.form-control(name='authority', id='authority')
+                     -for(var i=1; i<=2;i++)
+                        option(value=i)= i
+
+
+            .modal-footer
+              input#check(type = 'text' ,hidden)
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+              button.btn.btn-info(type='button', id='save') Save

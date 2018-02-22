@@ -32,8 +32,8 @@ html(lang='en')
                 div.col-lg-3.mx-auto
                     button.btn.btn-success.btn-block(data-toggle='modal', data-target='#search',onClick ="searchModalReset()") 검색
                     button.btn.btn-primary.btn-block(data-toggle='modal', data-target='#new',onClick ="newModalReset()") New
-                    
-
+                    if user_auth == 1
+                        a.btn.btn-secondary.btn-block(href='/user') 사용자관리
                     a.btn.btn-danger.btn-block(href='/logout') Logout
             //New Modal
             include ./includes/newModal.jade

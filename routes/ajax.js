@@ -135,4 +135,67 @@ router.put('/item/:id', function (req, res) {
     });
 });
 
+//New_User
+router.post('/user', function (req, res) {
+    console.log("new_userAjax");
+    var name = req.body.name;
+    var password = req.body.password;
+    var description = req.body.description;
+    var authority = req.body.authority;
+    console.log(req.body);
+    var sql = 'INSERT INTO `user` (`name`, `password`, `description`, `authority`) VALUES (?,?,?,?)';
+    var value = [name, password, description, authority];
+    conn.query(sql, value, function (err, rows, fields) {
+        if (err) {
+            res.send({ result: false, error: err });
+            console.log(err);
+        } else {
+            res.send({ result: true, row: rows });
+            console.log(rows);
+        }
+    });
+});
+
+//User Name Duplicate Check
+router.get('/user_du/:name', function (req, res) {
+    console.log("User Name Duplicate Ajax");
+    var name = req.params.name;
+      console.log(req.params);
+    var sql = 'SELECT * FROM user WHERE name=?';
+    conn.query(sql, name, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(rows[0]);
+            if (rows[0] == null) {
+                console.log("Null");
+                res.send({ result: true });
+            } else {
+                console.log("UserNaemDuplicate");
+                res.send({ result: false });
+            }
+        }
+    });
+});
+
+//Delete_user
+router.delete('/user/:id', function (req, res) {
+    console.log("User_Delete");
+    var id = req.params.id;
+    console.log(id);
+    var sql = 'DELETE FROM user WHERE id=?';
+    conn.query(sql, id, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(rows);
+            if (rows.affectedRows == 1) {
+                res.send({ result: true, rows: rows });
+            } else {
+                res.send({ result: false, rows: rows });
+            }
+        }
+    }); 
+});
+
 module.exports = router;
