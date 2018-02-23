@@ -3,15 +3,12 @@ $("#save").click(function () {
         save();
     }
 });
-
 $("#box").change(function () {
     duplicateCheck();
 });
-
 $("#block").change(function () {
     duplicateCheck();
 });
-
 $("#number").change(function () {
     duplicateCheck();
 });
@@ -34,8 +31,7 @@ $('#delete').click(function(){
                 alert("ERROR");
             }
         });
-    }
-        
+    }    
 });
 
 function getValue(id){
@@ -46,7 +42,6 @@ function getValue(id){
         type: "GET",
         success: function (data) {
             if (data['result'] == true) {
-                // alert(data['rows'][0].block);
                 $('#ori_box').val(data['rows'][0].box);
                 $('#ori_block').val(data['rows'][0].block);
                 $('#ori_number').val(data['rows'][0].number);
@@ -57,7 +52,6 @@ function getValue(id){
                 $('#number').val(data['rows'][0].number);
                 $('#title').val(data['rows'][0].title);
                 duplicateChange('true');
-
             }
         },
         error: function (request, status, error) {
@@ -65,7 +59,6 @@ function getValue(id){
         }
     }); 
 }
-
 function save() {
     var obj = new Object();
     obj.title = $('#title').val();
@@ -132,8 +125,6 @@ function duplicateCheck() {
     }
     }
 }
-
-
 
 function valueCheck() {
     if ($('#check').text() == 'true') {

@@ -29,8 +29,8 @@ app.use((err, req, res, next) => { // 에러 처리 부분
 });
 
 
-app.listen(4000, function () {
-    console.log('connection');
+app.listen(80, function () {
+    console.log('Connection');
 });
 
 

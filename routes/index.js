@@ -36,7 +36,6 @@ passport.use(new LocalStrategy({
     session: true,
     passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
   }, function (req, username, password, done) {
-
     var sql = 'SELECT * FROM user WHERE name=? AND password=?';
     var value = [username, password];
     conn.query(sql,value, function(err, rows, fields){
@@ -56,14 +55,6 @@ passport.use(new LocalStrategy({
            }
        }
     });
-
-    // if(username === 'store' && password === 'password'){
-    //   return done(null, {
-    //     'user_id': username,
-    //   });
-    // }else{
-    //   return done(false, null)
-    // }
 }));
 
 passport.serializeUser(function (user, done) {
@@ -88,12 +79,12 @@ router.get('/', isAuthenticated, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(JSON.stringify(rows[0]));
             res.render('view', { count: JSON.stringify(rows[0]), user_auth: req.user.authority });
-            console.log("Authority",req.user.authority);
             console.log('MainPageLoad');
+            console.log("Authority",req.user.authority);
         }
     });
+
 });
 
 
@@ -112,10 +103,11 @@ router.get('/logout', function (req, res) {
     res.redirect('/login');
 });
 
-
 router.get('/user', isAuthenticated, function (req, res) {
+    console.log(req.user.authority);
+        if(req.user.authority == 1){
         var sql = 'SELECT * FROM user';
-         conn.query(sql, function (err, rows, fields) {
+        conn.query(sql, function (err, rows, fields) {
             if (err) {
                 console.log(err);
             } else {
@@ -123,8 +115,10 @@ router.get('/user', isAuthenticated, function (req, res) {
                 res.render('user', { rows: rows });
             }
         }); 
+    }else{
+        res.redirect('/');
+    }
 });
-
 
 router.get(['/:box', '/:box/:block'], isAuthenticated, function (req, res) {
     var box = req.params.box;
@@ -145,6 +139,5 @@ router.get(['/:box', '/:box/:block'], isAuthenticated, function (req, res) {
         res.render('box', { box: box });
     }
 });
-
 
 module.exports = router;

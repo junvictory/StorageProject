@@ -32,7 +32,6 @@ router.post('/item', function (req, res) {
     });
 });
 
-
 //Item_Text_Search
 router.get('/item/:search', function (req, res) {
     console.log("searchAjax");

@@ -18,16 +18,21 @@
                 label.col-sm-3.col-form-label Password
                 .col-sm-7
                   input.form-control(type='password', name='password', id='password')
+                  small 6글자 이상
               .form-group.row
                 label.col-sm-3.col-form-label Description
                 .col-sm-7
                   input.form-control(type='text', name='description', id='description')
+                  small 3글자 이상
+
               .form-group.row
                 label.col-sm-3.col-form-label Authority
                 .col-sm-7
                   select.form-control(name='authority', id='authority')
                      -for(var i=1; i<=2;i++)
                         option(value=i)= i
+                  small 1은 관리자 2는 사용자
+
 
 
             .modal-footer

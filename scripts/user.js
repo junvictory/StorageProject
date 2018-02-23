@@ -6,14 +6,12 @@ $("#save").click(function () {
 
 $("#duplicate").click(function () {
     var name = $('#name').val();
-    if(name.length>5){
-    duplicateCheck();
-    }else{
-        alert("5글자 초과 되게 해주세요 ")
+    if (name.length > 5) {
+        duplicateCheck();
+    } else {
+        alert("6글자 이상 되게 해주세요 ")
     }
 });
-
-
 
 function save() {
     var obj = new Object();
@@ -45,13 +43,13 @@ function duplicateCheck() {
     } else {
         var name = $('#name').val();
         $.ajax({
-            url: "/ajax/user_du/"+name,
+            url: "/ajax/user_du/" + name,
             dataType: "json",
             type: "get",
             success: function (data) {
                 if (data['result'] == true) {
                     duplicateChange('true');
-                } else if(data['result'] == false){
+                } else if (data['result'] == false) {
                     alert('동일한 이름이 존재합니다')
                 }
             },
@@ -62,25 +60,25 @@ function duplicateCheck() {
     }
 }
 
-function userdelete(id){
-        if(confirm("삭제 하시겠습니까?")) {
-            $.ajax({
-                url: "/ajax/user/"+id,
-                dataType: "json",
-                type: "delete",
-                success: function (data) {
-                    if (data['result'] == true) {
-                        alert("삭제 되었습니다.");
-                        location.reload();
-                    }else if(data['result'] == false){
-                        alert('삭제 불가');
-                    }
-                },
-                error: function (request, status, error) {
-                    alert("ERROR");
+function userdelete(id) {
+    if (confirm("삭제 하시겠습니까?")) {
+        $.ajax({
+            url: "/ajax/user/" + id,
+            dataType: "json",
+            type: "delete",
+            success: function (data) {
+                if (data['result'] == true) {
+                    alert("삭제 되었습니다.");
+                    location.reload();
+                } else if (data['result'] == false) {
+                    alert('삭제 불가');
                 }
-            });
-        }
+            },
+            error: function (request, status, error) {
+                alert("ERROR");
+            }
+        });
+    }
 }
 function duplicateChange(value) {
     if (value == 'false') {
@@ -94,10 +92,13 @@ function duplicateChange(value) {
 
 function valueCheck() {
     if ($('#check').text() == 'true') {
-        if (($('password').val() == '')||($('decription').val() == '')) {
-            alert('확인해주세요');
-        } else {
+        var password = $('#password').val();
+        var description = $('#description').val();
+        if (password.length > 5 && description.length > 2) {
             return true;
+        } else {
+            alert("확인해 주세요")
+            return false;
         }
     } else {
         alert('확인해주세요');
